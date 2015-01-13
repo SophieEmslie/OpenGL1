@@ -1,4 +1,4 @@
-#intro to opengl
+#Intro to opengl
 
 
-this is being used to show using SDL and OpenG
+This is being used to show using SDL and OpenGL.
