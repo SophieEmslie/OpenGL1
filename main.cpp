@@ -7,6 +7,7 @@
 
 void drawTriangle();
 
+
 int main()
 {
     if(SDL_Init(SDL_INIT_VIDEO))
@@ -50,17 +51,32 @@ int main()
               );
 
 
-    drawTriangle();
-    SDL_GL_SwapWindow(window);
+    SDL_Event event;
 
-    SDL_Delay(10000);
+
+    bool quit= false;
+    while (!quit)
+    {
+        while(SDL_PollEvent(&event))
+        {
+            switch( event.type)
+            {
+            case SDL_QUIT :quit =true; break;
+            }
+        }
+        drawTriangle();
+        SDL_GL_SwapWindow(window);
+        glClear(GL_COLOR_BUFFER_BIT);
+    }
 
     return EXIT_SUCCESS;
 }
 
 void drawTriangle()
 {
+    static int rot=0;
     glPushMatrix();
+        glRotated(rot++,0, 1 , 0);
         glBegin(GL_TRIANGLES);
             glColor3f(1.0f , 0.0, 0.0f);
             glVertex3f(0.0f, 1.0f, 0.0f);
